@@ -1,21 +1,26 @@
 import slash
 from pathlib import Path
-from confetti import Config
 from logbook.compat import redirect_logging
 
-
+# Redirect log messages to logbook
 redirect_logging()
-"""
+
+# Set local time for log timestamps
 slash.config.root.log.localtime = True
-slash.config.root.log.root = Path(__file__).parent.absolute().joinpath("logs")
+
+# Set the root directory for log files to a subdirectory named "logs" relative to the .slashrc file
+slash.config.root.log.root = Path(__file__).parent.absolute() / "logs"
+
+# Set the default sources for test collection to "tests" directory
 slash.config.root.run.default_sources = ["tests"]
+
+# Enable unified session log, where all logs from a test session are written to a single file
 slash.config.root.log.unified_session_log = True
-slash.config.root.log.subpath = {
-    r"{context.session.id}/"
-    "{context.result.test_metadata.repeat_all_index}"
-    "_{context.result.test_metadata.test_index1}"
+
+# Define the subpath format for log files
+slash.config.root.log.subpath = (
+    "{context.session.id}/"
+    "{context.result.test_metadata.test_index1}"
     "_{context.test_classname}"
     "_{context.test_methodname}/debug.log"
-}
-"""
-
+)
