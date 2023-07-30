@@ -1,3 +1,4 @@
+import time
 import slash as slash
 from selenium import webdriver
 
