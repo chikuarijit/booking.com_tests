@@ -75,7 +75,7 @@ matplotlib-inline==0.1.6
     # via ipython
 munch==4.0.0
     # via dessert
-my-ui-booking-com==0.1
+my-ui-booking==0.1
     # via -r requirements.in
 ordered-set==4.1.0
     # via slash

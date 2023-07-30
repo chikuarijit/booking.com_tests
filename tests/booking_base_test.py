@@ -6,11 +6,11 @@ from selenium import webdriver
 class BookingBaseTest(slash.Test):
     def __init__(self, test_method_name, fixture_store, fixture_namespace, variation):
         super().__init__(test_method_name, fixture_store, fixture_namespace, variation)
+        self.driver = webdriver.Chrome()
 
     def before(self):
         super().before()
         slash.logger.info("Opening Chrome")
-        self.driver = webdriver.Chrome()
         slash.logger.info("Chrome Opened")
         self.driver.maximize_window()
         slash.logger.info("Chrome Maximized")
@@ -25,6 +25,3 @@ class BookingBaseTest(slash.Test):
 
     def _get_test_metadata_id(self):
         return self.test_metadata.id if hasattr(self, "test_metadata") else None
-
-
-
