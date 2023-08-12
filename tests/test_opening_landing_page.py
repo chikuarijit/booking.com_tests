@@ -34,4 +34,4 @@ class LandingPage(BookingBaseTest):
             assert self.language_changer.loaded, \
                 "Language page not loaded"
             self.language_changer.\
-                select_language("English (UK)")
+                select_language("English (US)")
