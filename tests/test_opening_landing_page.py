@@ -1,9 +1,8 @@
 import slash
 from slash_step import STEP
 from .booking_base_test import BookingBaseTest
-from my_ui_booking import booking, \
+from ..my_ui_booking.activities import booking, \
     change_currency, change_language
-
 
 class LandingPage(BookingBaseTest):
     def before(self):
