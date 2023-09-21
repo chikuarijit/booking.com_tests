@@ -143,8 +143,9 @@ trio-websocket==0.10.3
     # via selenium
 typing-extensions==4.7.1
     # via sqlalchemy
-urllib3[socks]==2.0.4
+urllib3[socks]==1.26.1
     # via
+    #   -r requirements.in
     #   requests
     #   selenium
 vintage==0.4.1
