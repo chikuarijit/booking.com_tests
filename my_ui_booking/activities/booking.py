@@ -5,6 +5,7 @@ from . import utils
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import \
     expected_conditions as EC
+import time
 
 
 class Booking:
@@ -29,6 +30,7 @@ class Booking:
         slash.logger.info("Popup Closed")
 
     def enter_destination(self, place_name):
+        """
         try:
             button = utils.get_wait(self.driver).until(
                 EC.element_to_be_clickable
@@ -36,7 +38,7 @@ class Booking:
 
             button.click()
         except:
-            pass
+            pass"""
 
         slash.logger.info("Finding Search Field")
         search_field = self.driver.find_element(By.ID, ":re:")
@@ -45,8 +47,23 @@ class Booking:
         slash.logger.info("Successfully clicked on Search Field")
         search_field.send_keys(place_name)
         slash.logger.info(f"Entered text {place_name}")
+        time.sleep(2)
+        """
         (utils.click_element_with_text
-         (self.driver, place_name=place_name))
+         (self.driver, place_name=place_name))"""
+
+        item_list = utils.get_wait(self.driver).until(
+            EC.presence_of_all_elements_located((By.CSS_SELECTOR, '.be14df8bfb'))
+        )
+        # Iterate through the list of items
+        for item in item_list:
+            # Find the text content within the item
+            item_text = item.find_element(By.CSS_SELECTOR, '.a3332d346a').text
+            # Check if the item's text matches the search string
+            if place_name in item_text:
+                # Click on the matching item
+                item.click()
+                break  # Exit the loop after clicking the first matching item
 
     def dates_loaded(self):
         try:
@@ -72,4 +89,3 @@ class Booking:
 
         utils.select_date(self.driver, checkin_date)
         utils.select_date(self.driver, checkout_date)
-

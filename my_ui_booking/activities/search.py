@@ -13,7 +13,7 @@ class Search:
 
     def launch(self):
         if not self.loaded():
-            button = self.driver.find_element(By.CSS_SELECTOR, "div.f9cf783bde button[type='submit']")
+            button = self.driver.find_element(By.CSS_SELECTOR, 'div.e22b782521 button[type="submit"]')
             button.click()
         else:
             slash.logger.info("Search Page already loaded")

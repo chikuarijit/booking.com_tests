@@ -20,7 +20,6 @@ class LandingPage(BookingBaseTest):
 
     @slash.tag("First")
     def test_opening_landing_page(self):
-        pass
 
         with STEP("Step 1 : Preconditions: "
                   "Open Booking.com home page"):
