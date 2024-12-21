@@ -3,7 +3,7 @@ name: Python CI
 on:
   pull_request:
     branches:
-      - develop  # or your default branch name
+      - main  # or your default branch name
 
 jobs:
   test:
