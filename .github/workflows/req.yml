@@ -1,0 +1,51 @@
+name: Python CI with Linting and Formatting
+
+on:
+  pull_request:
+    branches:
+      - develop
+  push:
+    branches:
+      - develop
+
+jobs:
+  lint_format:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+
+      - name: Install pip-tools
+        run: |
+          python -m pip install --upgrade pip
+          pip install pip-tools
+
+      - name: Remove existing requirements.txt
+        run: |
+          rm -f requirements.txt  # Remove the existing requirements.txt
+
+      - name: Compile requirements.txt from requirements.in
+        run: |
+          pip-compile requirements.in  # Generate a fresh requirements.txt
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run Black (code formatter)
+        run: |
+          black --check --diff .
+
+      - name: Run Flake8 (code linter)
+        run: |
+          flake8 .
+
+      - name: Run Ruff (fast linter)
+        run: |
+          ruff check .
