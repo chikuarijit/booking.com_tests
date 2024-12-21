@@ -15,6 +15,8 @@ attrs==24.3.0
     #   dessert
     #   outcome
     #   trio
+backcall==0.2.0
+    # via ipython
 brotli==1.1.0
     # via slash
 certifi==2024.12.14
@@ -47,8 +49,10 @@ idna==3.10
     # via
     #   requests
     #   trio
-ipython==8.31.0
-    # via slash
+ipython==8.13.0
+    # via
+    #   -r requirements.in
+    #   slash
 jedi==0.19.2
     # via ipython
 jinja2==3.1.4
@@ -74,6 +78,8 @@ outcome==1.3.0.post0
 parso==0.8.4
     # via jedi
 pexpect==4.9.0
+    # via ipython
+pickleshare==0.7.5
     # via ipython
 prompt-toolkit==3.0.48
     # via ipython
@@ -136,7 +142,6 @@ types-python-dateutil==2.9.0.20241206
     # via arrow
 typing-extensions==4.12.2
     # via
-    #   ipython
     #   selenium
     #   sqlalchemy
 urllib3[socks]==2.2.3
