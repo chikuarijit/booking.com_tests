@@ -139,7 +139,7 @@ typing-extensions==4.12.2
     #   ipython
     #   selenium
     #   sqlalchemy
-urllib3[socks]==1.26.1
+urllib3[socks]==2.2.3
     # via
     #   -r requirements.in
     #   requests
