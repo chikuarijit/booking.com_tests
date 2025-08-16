@@ -8,18 +8,54 @@ from selenium.webdriver.support import \
 import time
 
 
-class Booking:
+class Home:
     def __init__(self, driver):
         self.driver = driver
 
-    def open_landing_page(self):
-        slash.logger.info(f"Opening {const.BASE_URL}")
-        self.driver.get(const.BASE_URL)
-        slash.logger.info(f"{const.BASE_URL} successfully opened")
+    def launch(self):
+        if not self.loaded:
+            slash.logger.info(f"Opening {const.BASE_URL}")
+            self.driver.get(const.BASE_URL)
+            slash.logger.info(f"{const.BASE_URL} successfully opened")
+            try:
+                self.handle_popup()
+            except TimeoutException:
+                slash.logger.info("No popup detected")
+
+    @property
+    def loaded(self):
         try:
-            self.handle_popup()
+            return self.is_booking_logo_displayed
         except TimeoutException:
-            slash.logger.info("No popup detected")
+            return False
+
+    @property
+    def booking_logo(self):
+        # return the WebElement after waiting for it
+        element = utils.get_wait(self.driver).until(
+            EC.visibility_of_element_located(utils.booking_logo_locator())
+        )
+        return element
+
+    @property
+    def currency_button(self):
+        button = utils.get_wait(self.driver).until(
+            EC.element_to_be_clickable
+            ((By.CSS_SELECTOR, const.CURRENCY_BUTTON)))
+
+        return button
+
+    @property
+    def language_button(self):
+        button = utils.get_wait(self.driver).until(
+            EC.element_to_be_clickable
+            ((By.CSS_SELECTOR, const.LANGUAGE_BUTTON)))
+
+        return button
+
+    @property
+    def is_booking_logo_displayed(self):
+        return self.booking_logo.is_displayed()
 
     def handle_popup(self):
         slash.logger.info("Closing Popup")

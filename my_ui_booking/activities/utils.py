@@ -34,3 +34,17 @@ def decrease_button(driver, container_element):
 def numbers(driver, container_element):
     number_element = container_element.find_element(By.CLASS_NAME, "d723d73d5f")
     return int(number_element.text)
+
+def booking_logo_locator():
+    return By.CSS_SELECTOR, constants.BOOKING_LOGO_LOCATOR
+
+def currency_lists_locator():
+    # All buttons inside the currency list
+    return By.CSS_SELECTOR, constants.CURRENCY_LISTS_LOCATOR
+
+def language_lists_locator():
+    # All buttons inside the currency list
+    return By.CSS_SELECTOR, constants.LANGUAGE_LISTS_LOCATOR
+
+def close_button_locator():
+    return By.CSS_SELECTOR, constants.CLOSE_BUTTON
