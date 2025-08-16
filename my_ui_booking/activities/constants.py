@@ -26,6 +26,7 @@ LANGUAGE_PAGE = 'h2.f6431b446c.e6208ee469.d0caee4251'
 
 SELECT_LANGUAGE = 'ul.aca0ade214 li button'
 
+BOOKING_LOGO_LOCATOR = "a[data-testid='header-booking-logo']"
 
 # Messages
 CURRENCY_TEXT = "Select your currency"

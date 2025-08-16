@@ -1,13 +1,13 @@
 import slash
 from slash_step import STEP
 from .booking_base_test import BookingBaseTest
-from ..my_ui_booking.activities import booking, change_currency, change_language, occupancy, search
+from ..my_ui_booking.activities import booking_home, change_currency, change_language, occupancy, search
 
 class LandingPage(BookingBaseTest):
 
     def before(self):
         super().before()
-        self.booking_instance = booking.Booking(self.driver)
+        self.booking_home = booking_home.Home(self.driver)
         self.currency_changer = change_currency.ChangeCurrency(self.driver)
         self.language_changer = change_language.ChangeLanguage(self.driver)
         self.occupancy_instance = occupancy.Occupancy(self.driver)
@@ -17,8 +17,8 @@ class LandingPage(BookingBaseTest):
     def test_opening_landing_page(self):
 
         with STEP("Open Booking.com home page"):
-            self.booking_instance.open_landing_page()
-            assert self.booking_instance.is_loaded(), "Landing page not loaded"
+            self.booking_home.launch()
+            assert self.booking_home.loaded, "Landing page not loaded"
 
         with STEP("Change currency to USD"):
             self.currency_changer.launch()
