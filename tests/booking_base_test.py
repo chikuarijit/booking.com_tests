@@ -3,7 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import time
 import os
-from ..my_ui_booking.activities import booking_home, currency_page, change_language, occupancy, search
+from ..my_ui_booking.activities import booking_home, currency_page, language_page, occupancy, search
 
 
 class BookingBaseTest(slash.Test):
@@ -12,7 +12,7 @@ class BookingBaseTest(slash.Test):
         self.driver = self.init_driver()
         self.booking_home = booking_home.Home(self.driver)
         self.currency_page = currency_page.CurrencyPage(self.driver)
-        self.language_changer = change_language.ChangeLanguage(self.driver)
+        self.language_page = language_page.LanguagePage(self.driver)
         self.occupancy_instance = occupancy.Occupancy(self.driver)
         self.search_instance = search.Search(self.driver)
 

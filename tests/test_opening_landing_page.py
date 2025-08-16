@@ -21,10 +21,10 @@ class LandingPage(BookingBaseTest):
             self.currency_page.select_currency("USD")
 
         with STEP("Change language to English (US)"):
-            self.language_changer.launch()
-        #     assert self.language_changer.loaded(), "Language page not loaded"
-        #     self.language_changer.select_language("English (US)")
-        #
+            self.language_page.launch()
+            assert self.language_page.loaded(), "Language page not loaded"
+            self.language_page.select_language("English (US)")
+
         # with STEP("Enter destination Kolkata"):
         #     self.booking_instance.enter_destination("Kolkata")
         #

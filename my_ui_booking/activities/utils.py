@@ -41,3 +41,7 @@ def booking_logo_locator():
 def currency_lists_locator():
     # All buttons inside the currency list
     return By.CSS_SELECTOR, constants.CURRENCY_LISTS_LOCATOR
+
+def language_lists_locator():
+    # All buttons inside the currency list
+    return By.CSS_SELECTOR, constants.LANGUAGE_LISTS_LOCATOR

@@ -10,15 +10,16 @@ from .booking_home import Home
 class CurrencyPage(Home):
 
     def launch(self):
-        if not self.loaded():
+        if not self.loaded:
             slash.logger.info("Launching Currency Page")
             slash.logger.info("Clicking on Currency Button")
-            self.change_currency_button.click()
+            self.currency_button.click()
             slash.logger.info("Currency Page launched")
         else:
             slash.logger.info("Currency Page already loaded")
         time.sleep(2)
 
+    @property
     def loaded(self):
         try:
             return self.select_currency_heading.text.\
@@ -38,6 +39,8 @@ class CurrencyPage(Home):
         """
         Select a currency by its code, e.g., 'INR', 'USD', 'EUR'.
         """
+        if not self.loaded:
+            self.launch()
         # Wait for all currency buttons to be visible
         buttons = utils.get_wait(self.driver).until(
             EC.visibility_of_all_elements_located(utils.currency_lists_locator())

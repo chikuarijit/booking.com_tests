@@ -14,8 +14,11 @@ CURRENCY_BUTTON = '[data-testid=' \
                   'picker-trigger"]'
 
 SELECT_CURRENCY_HEADING_LOCATOR = "//h2[text()='Select your currency']/.."
+SELECT_LANGUAGE_HEADING_LOCATOR = "//h2[text()='Select your language']/.."
 
 CURRENCY_LISTS_LOCATOR= "button[data-testid='selection-item']"
+
+LANGUAGE_LISTS_LOCATOR= "button[data-testid='selection-item']"
 
 CURRENCY_PAGE = 'h2.f6431b446c.e6208ee469.d0caee4251'
 
