@@ -45,3 +45,6 @@ def currency_lists_locator():
 def language_lists_locator():
     # All buttons inside the currency list
     return By.CSS_SELECTOR, constants.LANGUAGE_LISTS_LOCATOR
+
+def close_button_locator():
+    return By.CSS_SELECTOR, constants.CLOSE_BUTTON

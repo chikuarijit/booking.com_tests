@@ -35,6 +35,8 @@ SELECT_LANGUAGE = 'ul.aca0ade214 li button'
 
 BOOKING_LOGO_LOCATOR = "a[data-testid='header-booking-logo']"
 
+CLOSE_BUTTON = "button[data-testid='selection-modal-close']"
+
 # Messages
 CURRENCY_TEXT = "Select your currency"
 
