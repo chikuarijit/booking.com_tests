@@ -37,3 +37,7 @@ def numbers(driver, container_element):
 
 def booking_logo_locator():
     return By.CSS_SELECTOR, constants.BOOKING_LOGO_LOCATOR
+
+def currency_lists_locator():
+    # All buttons inside the currency list
+    return By.CSS_SELECTOR, constants.CURRENCY_LISTS_LOCATOR

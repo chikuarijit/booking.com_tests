@@ -38,6 +38,14 @@ class Home:
         return element
 
     @property
+    def change_currency_button(self):
+        button = utils.get_wait(self.driver).until(
+            EC.element_to_be_clickable
+            ((By.CSS_SELECTOR, const.CURRENCY_BUTTON)))
+
+        return button
+
+    @property
     def is_booking_logo_displayed(self):
         return self.booking_logo.is_displayed()
 
