@@ -3,8 +3,7 @@ from selenium.common import TimeoutException
 from . import constants as const
 from . import utils
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support import \
-    expected_conditions as EC
+from selenium.webdriver.support import expected_conditions as EC
 import time
 
 
@@ -40,16 +39,16 @@ class Home:
     @property
     def currency_button(self):
         button = utils.get_wait(self.driver).until(
-            EC.element_to_be_clickable
-            ((By.CSS_SELECTOR, const.CURRENCY_BUTTON)))
+            EC.element_to_be_clickable((By.CSS_SELECTOR, const.CURRENCY_BUTTON))
+        )
 
         return button
 
     @property
     def language_button(self):
         button = utils.get_wait(self.driver).until(
-            EC.element_to_be_clickable
-            ((By.CSS_SELECTOR, const.LANGUAGE_BUTTON)))
+            EC.element_to_be_clickable((By.CSS_SELECTOR, const.LANGUAGE_BUTTON))
+        )
 
         return button
 
@@ -60,8 +59,8 @@ class Home:
     def handle_popup(self):
         slash.logger.info("Closing Popup")
         button = utils.get_wait(self.driver).until(
-            EC.element_to_be_clickable
-            ((By.CSS_SELECTOR, const.CLOSE_POPUP)))
+            EC.element_to_be_clickable((By.CSS_SELECTOR, const.CLOSE_POPUP))
+        )
         button.click()
         slash.logger.info("Popup Closed")
 
@@ -89,12 +88,12 @@ class Home:
          (self.driver, place_name=place_name))"""
 
         item_list = utils.get_wait(self.driver).until(
-            EC.presence_of_all_elements_located((By.CSS_SELECTOR, '.be14df8bfb'))
+            EC.presence_of_all_elements_located((By.CSS_SELECTOR, ".be14df8bfb"))
         )
         # Iterate through the list of items
         for item in item_list:
             # Find the text content within the item
-            item_text = item.find_element(By.CSS_SELECTOR, '.a3332d346a').text
+            item_text = item.find_element(By.CSS_SELECTOR, ".a3332d346a").text
             # Check if the item's text matches the search string
             if place_name in item_text:
                 # Click on the matching item
@@ -105,22 +104,31 @@ class Home:
         try:
             utils.get_wait(self.driver).until(
                 EC.text_to_be_present_in_element(
-                    (By.CSS_SELECTOR, 'button[aria-controls="calendar-searchboxdatepicker"] span.a53cbfa6de'),
-                    "Calendar") and
-                EC.text_to_be_present_in_element(
-                    (By.CSS_SELECTOR, 'button[aria-controls="flexible-searchboxdatepicker"] span.a53cbfa6de'),
-                    "I'm flexible")
+                    (
+                        By.CSS_SELECTOR,
+                        'button[aria-controls="calendar-searchboxdatepicker"] span.a53cbfa6de',
+                    ),
+                    "Calendar",
+                )
+                and EC.text_to_be_present_in_element(
+                    (
+                        By.CSS_SELECTOR,
+                        'button[aria-controls="flexible-searchboxdatepicker"] span.a53cbfa6de',
+                    ),
+                    "I'm flexible",
+                )
             )
             return True
-        except:
+        except:  # noqa: E722
             return False
 
     def select_checkin_checkout_dates(self, checkin_date, checkout_date):
         if not self.dates_loaded():
             button = utils.get_wait(self.driver).until(
-                EC.element_to_be_clickable
-                ((By.CSS_SELECTOR,
-                  'button[data-testid="date-display-field-start"]')))
+                EC.element_to_be_clickable(
+                    (By.CSS_SELECTOR, 'button[data-testid="date-display-field-start"]')
+                )
+            )
             button.click()
 
         utils.select_date(self.driver, checkin_date)

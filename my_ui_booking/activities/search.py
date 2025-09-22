@@ -1,10 +1,9 @@
 import slash
-from . import constants as const
+# from . import constants as const
 from . import utils
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support import \
-    expected_conditions as EC
-import time
+from selenium.webdriver.support import expected_conditions as EC
+# import time
 
 
 class Search:
@@ -13,7 +12,9 @@ class Search:
 
     def launch(self):
         if not self.loaded():
-            button = self.driver.find_element(By.CSS_SELECTOR, 'div.e22b782521 button[type="submit"]')
+            button = self.driver.find_element(
+                By.CSS_SELECTOR, 'div.e22b782521 button[type="submit"]'
+            )
             button.click()
         else:
             slash.logger.info("Search Page already loaded")
@@ -22,8 +23,10 @@ class Search:
         try:
             # Wait for the "properties found" string to be present in the page content
             utils.get_wait(self.driver).until(
-                EC.text_to_be_present_in_element((By.CSS_SELECTOR, "h1.f6431b446c"), "properties found")
+                EC.text_to_be_present_in_element(
+                    (By.CSS_SELECTOR, "h1.f6431b446c"), "properties found"
+                )
             )
             return True
-        except:
+        except:  # noqa: E722
             return False

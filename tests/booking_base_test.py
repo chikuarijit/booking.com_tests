@@ -3,7 +3,13 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import time
 import os
-from ..my_ui_booking.activities import booking_home, currency_page, language_page, occupancy, search
+from ..my_ui_booking.activities import (
+    booking_home,
+    currency_page,
+    language_page,
+    occupancy,
+    search,
+)
 
 
 class BookingBaseTest(slash.Test):
@@ -37,7 +43,9 @@ class BookingBaseTest(slash.Test):
                 timestamp = time.strftime("%Y%m%d-%H%M%S")
                 log_dir = slash.context.result.get_log_dir()
                 os.makedirs(log_dir, exist_ok=True)
-                screenshot_path = os.path.join(log_dir, f"failure_image_{timestamp}.png")
+                screenshot_path = os.path.join(
+                    log_dir, f"failure_image_{timestamp}.png"
+                )
                 self.driver.save_screenshot(screenshot_path)
                 slash.logger.info(f"Saved failure screenshot: {screenshot_path}")
         finally:

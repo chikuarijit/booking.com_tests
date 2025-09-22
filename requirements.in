@@ -3,3 +3,4 @@ slash
 slash_step
 urllib3 == 1.26.1
 pip-tools
+coverage

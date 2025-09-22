@@ -22,16 +22,17 @@ class CurrencyPage(Home):
     @property
     def loaded(self):
         try:
-            return self.select_currency_heading.text.\
-                strip() == const.CURRENCY_TEXT
-        except:
+            return self.select_currency_heading.text.strip() == const.CURRENCY_TEXT
+        except:  # noqa: E722
             return False
 
     @property
     def select_currency_heading(self):
         element = utils.get_wait(self.driver).until(
-            EC.visibility_of_element_located
-            ((By.XPATH, const.SELECT_CURRENCY_HEADING_LOCATOR)))
+            EC.visibility_of_element_located(
+                (By.XPATH, const.SELECT_CURRENCY_HEADING_LOCATOR)
+            )
+        )
 
         return element
 
@@ -54,7 +55,7 @@ class CurrencyPage(Home):
 
                 return curr
 
-        raise Exception(f"No selected language found")
+        raise Exception("No selected language found")
 
     def is_currency_selected(self, currency):
         return currency in self.get_selected_currency()
@@ -68,7 +69,9 @@ class CurrencyPage(Home):
         # Loop through the buttons and find the desired currency
         for currency in currency_list:
             # Get the inner div containing the currency code
-            currency_div = currency.find_element(By.CSS_SELECTOR, "div.CurrencyPicker_currency")
+            currency_div = currency.find_element(
+                By.CSS_SELECTOR, "div.CurrencyPicker_currency"
+            )
             if currency_div.text.strip() == currency_code:
                 currency.click()
                 return True  # Successfully clicked
@@ -78,7 +81,7 @@ class CurrencyPage(Home):
     @property
     def close_button(self):
         button = utils.get_wait(self.driver).until(
-            EC.element_to_be_clickable
-            ((By.CSS_SELECTOR, const.CLOSE_BUTTON)))
+            EC.element_to_be_clickable((By.CSS_SELECTOR, const.CLOSE_BUTTON))
+        )
 
         return button
