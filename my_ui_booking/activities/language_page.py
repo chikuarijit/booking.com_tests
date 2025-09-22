@@ -23,7 +23,7 @@ class LanguagePage(Home):
     def loaded(self):
         try:
             return self.select_language_heading.text.strip() == const.LANGUAGE_TEXT
-        except:
+        except:  # noqa: E722
             return False
 
     @property
@@ -55,7 +55,7 @@ class LanguagePage(Home):
 
                 return lang
 
-        raise Exception(f"No selected language found")
+        raise Exception("No selected language found")
 
     def is_language_selected(self, language):
         return language == self.get_selected_language()

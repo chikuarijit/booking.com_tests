@@ -119,7 +119,7 @@ class Home:
                 )
             )
             return True
-        except:
+        except:  # noqa: E722
             return False
 
     def select_checkin_checkout_dates(self, checkin_date, checkout_date):

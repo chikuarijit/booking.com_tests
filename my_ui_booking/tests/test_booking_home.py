@@ -1,8 +1,8 @@
 import unittest
 from unittest.mock import MagicMock, patch, PropertyMock
 from my_ui_booking.activities.booking_home import Home
-from selenium.common import TimeoutException
-from selenium.webdriver.common.by import By
+# from selenium.common import TimeoutException
+# from selenium.webdriver.common.by import By
 
 
 class TestHome(unittest.TestCase):

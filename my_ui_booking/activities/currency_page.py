@@ -23,7 +23,7 @@ class CurrencyPage(Home):
     def loaded(self):
         try:
             return self.select_currency_heading.text.strip() == const.CURRENCY_TEXT
-        except:
+        except:  # noqa: E722
             return False
 
     @property
@@ -55,7 +55,7 @@ class CurrencyPage(Home):
 
                 return curr
 
-        raise Exception(f"No selected language found")
+        raise Exception("No selected language found")
 
     def is_currency_selected(self, currency):
         return currency in self.get_selected_currency()
