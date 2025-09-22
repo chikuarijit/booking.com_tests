@@ -4,7 +4,8 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write   # ✅ Allow the bot to push branches
+  contents: write   # ✅ Allow push
+  pull-requests: write   # ✅ Allow creating PRs
 
 jobs:
   update-reqs:
@@ -34,7 +35,19 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           BRANCH_NAME="update-requirements-$(date +%Y%m%d%H%M%S)"
+          echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
           git checkout -b $BRANCH_NAME
           git add requirements.txt
           git commit -m "Update requirements.txt"
           git push origin $BRANCH_NAME
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Update requirements.txt"
+          branch: ${{ env.BRANCH_NAME }}
+          base: develop   # 👈 target branch for the PR
+          title: "Update requirements.txt"
+          body: "This PR updates the requirements.txt file with the latest dependencies."
+          labels: dependencies
