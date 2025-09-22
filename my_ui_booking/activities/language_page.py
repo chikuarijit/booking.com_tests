@@ -22,16 +22,17 @@ class LanguagePage(Home):
     @property
     def loaded(self):
         try:
-            return self.select_language_heading.text.\
-                strip() == const.LANGUAGE_TEXT
+            return self.select_language_heading.text.strip() == const.LANGUAGE_TEXT
         except:
             return False
 
     @property
     def select_language_heading(self):
         element = utils.get_wait(self.driver).until(
-            EC.visibility_of_element_located
-            ((By.XPATH, const.SELECT_LANGUAGE_HEADING_LOCATOR)))
+            EC.visibility_of_element_located(
+                (By.XPATH, const.SELECT_LANGUAGE_HEADING_LOCATOR)
+            )
+        )
 
         return element
 
@@ -80,7 +81,7 @@ class LanguagePage(Home):
     @property
     def close_button(self):
         button = utils.get_wait(self.driver).until(
-            EC.element_to_be_clickable
-            ((By.CSS_SELECTOR, const.CLOSE_BUTTON)))
+            EC.element_to_be_clickable((By.CSS_SELECTOR, const.CLOSE_BUTTON))
+        )
 
         return button
